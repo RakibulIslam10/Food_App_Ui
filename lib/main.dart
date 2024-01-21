@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:myproject/My%20header.dart';
-import 'package:myproject/MyList.dart';
-import 'package:myproject/MyNavBar.dart';
-import 'package:myproject/MyTabBar.dart';
-import 'package:myproject/Mygrid.dart';
+import 'package:myproject/LoginFrom.dart';
+import 'package:myproject/Singupb.dart';
+import 'package:device_preview/device_preview.dart';
 
-void main(){
-  runApp(const MyApp());
-}
+void main() => runApp(
+      DevicePreview(
+        enabled: true,
+        builder: (context) => const MyApp(), // Wrap your app
+      ),
+    );
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -16,57 +17,124 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 6,
-      child: Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 30),
-                  const MyHeader(),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                          prefixIcon: Icon(CupertinoIcons.search),
-                          label: Text("Search"),
-                          border: OutlineInputBorder()),
+    double myheight = MediaQuery.of(context).size.height;
+    double mywidth = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      body:  Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: myheight,
+            width: mywidth,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                      'images/rr.jpg',
                     ),
-                  ),
-                  const MyTabBar(),
-                  const SizedBox(height: 8),
-                  const MyGrid(),
-                  const Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      "Big Offer",
-                      style:
-                      TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    fit: BoxFit.cover)),
+            child: Container(
+              height: myheight,
+              width: mywidth,
+              color: Colors.black54,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 60),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          " Food",
+                          style: TextStyle(
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        Text(
+                          " App",
+                          style: TextStyle(
+                              fontSize: 50,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue),
+                        ),
+                      ],
                     ),
-                  ),
-                  const MyList(),
-                  const MyList(),
-                  const MyList(),
-                  const MyList(),
-                ],
+                    const SizedBox(
+                      height: 80,
+                    ),TextFeild(),
+                    const SizedBox(
+                      height: 60),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Row(
+                        children: [
+                          const Expanded(
+                            child: Divider(
+                              color: Colors.grey,
+                              thickness: 2),
+                          ),
+                          const SizedBox(
+                            width: 10),
+                          const Text(
+                            "Or Continue",style: TextStyle(color: Colors.white),
+                          ),
+                          const SizedBox(
+                            width: 10),
+                          Expanded(
+                            child: Divider(
+                              color: Colors.grey.shade300,
+                              thickness: 2),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 60),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SingUpBatton(imagepath: "images/g.png"),
+                        SizedBox(width: 25),
+                        SingUpBatton(imagepath: "images/i.png"),
+                      ],
+                    ),
+                    const SizedBox(height: 60),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Not a member?",
+                            style: TextStyle(
+                              color: Colors.white,
+                            )),
+                        SizedBox(width: 4),
+                        Text(
+                          "Register now?",
+                          style: TextStyle(
+                              color: Colors.blue, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          bottomNavigationBar: const MyNavBar()),
+          )
+        ],
+      ),
     );
   }
 }

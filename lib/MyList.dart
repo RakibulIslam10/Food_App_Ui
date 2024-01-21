@@ -5,12 +5,18 @@ class MyList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+    return    Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 8),
       child: Container(
-        color: Colors.white,
-        width: double.infinity,
         height: 115,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black54.withOpacity(0.1),
+                  blurRadius: 10)
+            ]),
         child: Row(
           children: [
             Row(
