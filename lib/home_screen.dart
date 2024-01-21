@@ -17,30 +17,32 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.grey.shade300,
           body: Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 30),
-                const MyHeader(),
-                const MyTextField(),
-                const MyTabBar(),
-                const SizedBox(height: 8),
-                const MyGrid(),
-                const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    "Big Offer",
-                    style:
-                    TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 30),
+                  const MyHeader(),
+                  const MyTextField(),
+                  const MyTabBar(),
+                  const SizedBox(height: 8),
+                  const MyGrid(),
+                  const Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      "Big Offer",
+                      style:
+                      TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: ListView.builder(
+                  ListView.builder(
+
+                    shrinkWrap: true,
                     itemCount: 10,
-                    itemBuilder: (context, index) => const MyList(),),
-                )
-              ],
+                    itemBuilder: (context, index) => const MyList(),)
+                ],
+              ),
             ),
           ),
           bottomNavigationBar: const MyNavBar()),
